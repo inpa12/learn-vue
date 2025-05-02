@@ -1,15 +1,22 @@
 <template>
     <div class="p-3 bg-danger">
-        <button class="btn btn-primary" type="button" v-bind="$attrs">My Button</button>
+        <!-- v-bind="$attrs" -->
+        <button class="btn btn-primary" type="button" @click="sayHello">My Button</button>
     </div>
 </template>
 
 <script>
 export default {
-    inheritAttrs: false,
-    setup(props, context) {
-        console.log('context.attrs: ', context.attrs)
-        return {}
+    // inheritAttrs: false,
+    emits: ['click'],
+    setup(props, { emit }) {
+        // console.log('context.attrs: ', context.attrs)
+        const sayHello = () => {
+            emit('click')
+        }
+        return {
+            sayHello,
+        }
     },
 }
 </script>
