@@ -1,56 +1,30 @@
 <template>
     <div class="card">
-        <div class="card-body">
-            <!-- type : news , notice -->
-            <span class="badge text-bg-secondary">{{ typeName }}</span>
-            <h5 class="card-title red mt-2">{{ title }}</h5>
-            <p class="card-text">{{ contents }}</p>
-            <a href="#" class="btn" :class="isLikeClass" @click.prevent="toggleLike">좋아요</a>
+        <div v-if="$slots.header" class="card-header">
+            <slot name="header" header-message="헤더 메시지!!!">#header</slot>
+        </div>
+        <div v-if="$slots.default" class="card-body">
+            <slot :child-message="childMessage" hello-message="안녕하세요.">#body</slot>
+        </div>
+        <div v-if="$slots.footer" class="card-footer text-body-secondary">
+            <slot name="footer" footer-message="푸터 메시지!!!">#footer</slot>
         </div>
     </div>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { ref } from 'vue';
 
 export default {
-    props: {
-        type: {
-            type: String,
-            default: 'news',
-            validator: (value) => {
-                return ['news', 'notice'].includes(value)
-            },
-        },
-        title: {
-            type: String,
-            required: true,
-        },
-        contents: {
-            type: String,
-            required: true,
-        },
-        isLike: {
-            type: Boolean,
-            default: false,
-        },
-    },
-    emits: ['toggleLike'],
-    setup(props, context) {
-        //console.log('props.title: ', props.title)
-        const isLikeClass = computed(() => (props.isLike ? 'btn-danger' : 'btn-outline-danger'))
-        const typeName = computed(() => (props.type === 'news' ? '뉴스' : '공지사항'))
-        const toggleLike = () => {
-            console.log('asdf')
-            context.emit('toggleLike')
-        }
+    setup () {
+        const childMessage = ref('자식 메시지입니다.!')
         return {
-            isLikeClass,
-            typeName,
-            toggleLike,
+            childMessage
         }
-    },
+    }
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+
+</style>

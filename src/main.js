@@ -10,5 +10,7 @@ const app = createApp(App)
 
 //app.component('AppCard', AppCard)
 
+app.provide('app-message', 'app message 입니다.')
+app.config.globalProperties.msg = 'hello'
 app.mount('#app')
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
