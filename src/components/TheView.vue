@@ -1,5 +1,6 @@
 <template>
     <main>
+<<<<<<< HEAD
         <div class="container py-4">
             <MyButton class="my-button" id="my-button" @click="sayHello"></MyButton>
             <LabelInput label="이름" data-id="id입니다."></LabelInput>
@@ -25,6 +26,16 @@ export default {
         }
     },
 }
+=======
+        <DynamicComponent></DynamicComponent>
+    </main>
+</template>
+
+<script setup>
+import DynamicComponent from './DynamicComponent.vue';
+>>>>>>> c8dd4fa7301c38928b49119baeafb31fd9680e62
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
